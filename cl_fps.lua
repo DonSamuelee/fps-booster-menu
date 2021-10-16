@@ -1,10 +1,10 @@
 ESX = nil
 
 Citizen.CreateThread(function()
-	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-		Citizen.Wait(0)
-	end
+      while ESX == nil do
+	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+	Citizen.Wait(0)
+      end
 end)
 
 RegisterNetEvent('fps:menu') 
@@ -16,7 +16,7 @@ function FPSMenu()
 
     local elements = {
       {label = 'OFF',		value = 'disattivato'},
-		  {label = 'ON',		value = 'attivato'},    						          
+      {label = 'ON',		value = 'attivato'},    						          
     }
   
     ESX.UI.Menu.CloseAll()
