@@ -1,22 +1,15 @@
-ESX = nil
+ESX = exports['es_extended']:getSharedObject()
 
-Citizen.CreateThread(function()
-      while ESX == nil do
-	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-	Citizen.Wait(0)
-      end
-end)
-
-RegisterNetEvent('fps:menu') 
-AddEventHandler('fps:menu', function()
+ 
+RegisterCommand('fps', function()
   FPSMenu()
 end)
 
 function FPSMenu() 
 
     local elements = {
-      {label = 'OFF',		value = 'disattivato'},
-      {label = 'ON',		value = 'attivato'},    						          
+      {label = 'ON',		value = 'on'}, 
+      {label = 'OFF',		value = 'off'},   						          
     }
   
     ESX.UI.Menu.CloseAll()
@@ -31,17 +24,15 @@ function FPSMenu()
   
             function(data2, menu2)
 
-             if data2.current.value == 'disattivato' then
+             if data2.current.value == 'off' then
                 SetTimecycleModifier()
                 ClearTimecycleModifier()
                 ClearExtraTimecycleModifier()
-              elseif data2.current.value == 'attivato' then
+              elseif data2.current.value == 'on' then
                 SetTimecycleModifier('yell_tunnel_nodirect')
               end
             end,
       function(data2, menu2)
         menu2.close()
-      end
-    )
+      end)
   end
-  
